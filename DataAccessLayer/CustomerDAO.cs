@@ -78,5 +78,18 @@ namespace DataAccessLayer
                 throw new Exception(ex.Message);
             }
         }
+
+        public static Customer GetCustomerToLogin(string customerEmail, string password)
+        {
+            try
+            {
+                using var context = new FuminiHotelManagementContext();
+                return context.Customers.FirstOrDefault(c => (c.EmailAddress == customerEmail && c.Password == password));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

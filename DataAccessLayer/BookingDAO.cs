@@ -11,25 +11,21 @@ namespace DataAccessLayer
 {
     public class BookingDAO
     {
-        public static List<object> GetBookings()
+        public static List<BookingReservation> GetBookingsListById(int CustomerId)
         {
             try
             {
                 using var context = new FuminiHotelManagementContext();
-                //bookings = context.BookingReservations.ToList();
                  var bookings = from br in context.BookingReservations
-                               join bd in context.BookingDetails on br.BookingReservationId equals bd.BookingReservationId
-                               select new { 
+                                where br.CustomerId == CustomerId
+                               select new BookingReservation
+                               { 
                                 BookingReservationId = br.BookingReservationId,
                                 BookingDate = br.BookingDate,
                                 TotalPrice = br.TotalPrice,
-                                BookingStatus = br.BookingStatus,
-                                RoomID = bd.RoomId,
-                                StartDate = bd.StartDate,
-                                EndDate = bd.EndDate,
-                                ActualPrice = bd.ActualPrice,
+                                BookingStatus = br.BookingStatus
                                };
-                return bookings.ToList<object>();
+                return bookings.ToList();
             }
             catch (Exception ex)
             {
@@ -115,7 +111,7 @@ namespace DataAccessLayer
             try
             {
                 using var context = new FuminiHotelManagementContext();
-                return context.BookingReservations.FirstOrDefault(b => b.BookingReservationId == id);
+                return context.BookingReservations.FirstOrDefault(b => b.CustomerId == id);
             }
             catch (Exception ex)
             {

@@ -17,6 +17,9 @@ namespace Repositories
 
         public List<Customer> GetCustomers() => CustomerDAO.GetCustomers();
 
+        public Customer GetCustomerToLogin(string customerEmail, string password) 
+            => CustomerDAO.GetCustomerToLogin(customerEmail, password);
+
         public void UpdateCustomer(Customer customer) => CustomerDAO.UpdateCustomer(customer);
     }
 }

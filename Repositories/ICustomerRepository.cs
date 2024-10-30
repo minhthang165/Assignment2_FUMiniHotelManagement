@@ -14,5 +14,6 @@ namespace Repositories
         void DeleteCustomer(Customer customer);
         void CreateNewCustomer(Customer customer);
         Customer GetCustomerById(int id);
+        Customer GetCustomerToLogin(string customerEmail, string password);
     }
 }
