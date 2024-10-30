@@ -65,5 +65,18 @@ namespace DataAccessLayer
                 throw new Exception(ex.Message);
             }
         }
+
+        public static Customer GetCustomerById(int id)
+        {
+            try
+            {
+                using var context = new FuminiHotelManagementContext();
+                return context.Customers.FirstOrDefault(c => c.CustomerId == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

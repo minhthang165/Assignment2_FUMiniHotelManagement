@@ -1,4 +1,5 @@
-﻿using BusinessObjects.Models;
+﻿using BusinessObjects.Enums;
+using BusinessObjects.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,116 @@ namespace DataAccessLayer
 {
     public class BookingDAO
     {
-        public static List<BookingReservation> GetBookings()
+        public static List<object> GetBookings()
         {
+            try
+            {
+                using var context = new FuminiHotelManagementContext();
+                //bookings = context.BookingReservations.ToList();
+                 var bookings = from br in context.BookingReservations
+                               join bd in context.BookingDetails on br.BookingReservationId equals bd.BookingReservationId
+                               select new { 
+                                BookingReservationId = br.BookingReservationId,
+                                BookingDate = br.BookingDate,
+                                TotalPrice = br.TotalPrice,
+                                BookingStatus = br.BookingStatus,
+                                RoomID = bd.RoomId,
+                                StartDate = bd.StartDate,
+                                EndDate = bd.EndDate,
+                                ActualPrice = bd.ActualPrice,
+                               };
+                return bookings.ToList<object>();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
+        public static void CreateNewBooking(RoomInformation room, Customer customer, DateOnly StartDate, DateOnly EndDate)
+        {
+            try
+            {
+                BookingReservation bookingReservation = new BookingReservation
+                {
+                    BookingDate = DateOnly.FromDateTime(DateTime.Now),
+                    TotalPrice = (EndDate.DayNumber - StartDate.DayNumber) * room.RoomPricePerDay,
+                    CustomerId = customer.CustomerId,
+                    BookingStatus = 2
+                };
+                BookingDetail bookingDetail = new BookingDetail
+                {
+                    BookingReservationId = bookingReservation.BookingReservationId,
+                    RoomId = room.RoomId,
+                    StartDate = StartDate,
+                    EndDate = EndDate
+                };
+
+                using var context = new FuminiHotelManagementContext();
+                context.BookingReservations.Add(bookingReservation);
+                context.BookingDetails.Add(bookingDetail);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static void UpdateBooking(RoomInformation room, Customer customer, DateOnly StartDate, DateOnly EndDate, BookingStatus status)
+        {
+            try
+            {
+                BookingReservation bookingReservation = new BookingReservation
+                {
+                    BookingDate = DateOnly.FromDateTime(DateTime.Now),
+                    TotalPrice = (EndDate.DayNumber - StartDate.DayNumber) * room.RoomPricePerDay,
+                    CustomerId = customer.CustomerId,
+                    BookingStatus = Convert.ToByte(status)
+                };
+
+                BookingDetail bookingDetail = new BookingDetail
+                {
+                    BookingReservationId = bookingReservation.BookingReservationId,
+                    RoomId = room.RoomId,
+                    StartDate = StartDate,
+                    EndDate = EndDate
+                };
+                using var context = new FuminiHotelManagementContext();
+                context.BookingReservations.Update(bookingReservation);
+                context.BookingDetails.Update(bookingDetail);
+                context.SaveChanges();
+            } catch (Exception ex) 
+            { 
+                throw new Exception(ex.Message); 
+            }
+        }
+
+        public static void DeleteBooking(BookingReservation reservation)
+        {
+            try
+            {
+                using var context = new FuminiHotelManagementContext();
+                context.BookingReservations.Remove(reservation);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static BookingReservation GetBookingReservationById(int id)
+        {
+            try
+            {
+                using var context = new FuminiHotelManagementContext();
+                return context.BookingReservations.FirstOrDefault(b => b.BookingReservationId == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
