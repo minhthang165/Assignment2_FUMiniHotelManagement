@@ -1,0 +1,49 @@
+﻿<Window x:Class="HotelApp.ManageBooking"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelApp"
+        mc:Ignorable="d"
+        Title="ManageBooking" Height="450" Width="800">
+    <Grid>
+        <Label Content="Booking Rever ID" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="Booking Date" HorizontalAlignment="Left" Height="25" Margin="10,40,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="Total Price" HorizontalAlignment="Left" Height="25" Margin="10,70,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="Booking Status" HorizontalAlignment="Left" Height="25" Margin="10,100,0,0" VerticalAlignment="Top" Width="119"/>
+        <TextBox x:Name="txtBookingReverID" HorizontalAlignment="Left" Height="19" Margin="142,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" IsEnabled="False"/>
+        <TextBox x:Name="txtBookingDate" HorizontalAlignment="Left" Height="19" Margin="142,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+        <TextBox x:Name="txtTotalPrice" HorizontalAlignment="Left" Height="19" Margin="142,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+        <TextBox x:Name="txtBookingStatus" HorizontalAlignment="Left" Height="19" Margin="142,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" IsEnabled="False"/>
+        <DataGrid x:Name="dgData" AutoGenerateColumns="False" Margin="0,160,0,0" Height="274" VerticalAlignment="Top" SelectionChanged="dgData_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Booking Reservation ID" Binding="{Binding BookingReservationId}" />
+                <DataGridTextColumn Header="Booking Date" Binding="{Binding BookingDate}" />
+                <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}" />
+                <DataGridTextColumn Header="Booking Status" Binding="{Binding BookingStatus}" />
+                <DataGridTemplateColumn Header="Start Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding BookingDetails[0].StartDate}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="End Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding BookingDetails[0].EndDate}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Customer" Binding="{Binding Customer}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Height="30" Margin="518,26,0,0" VerticalAlignment="Top" Width="57" Click="btnCreate_Click"/>
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Height="30" Margin="610,26,0,0" VerticalAlignment="Top" Width="56" Click="btnUpdate_Click"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="30" Margin="700,26,0,0" VerticalAlignment="Top" Width="58" Click="btnDelete_Click"/>
+        <Button x:Name="btnToViewCustomer" Content="View Customer" Height="30" Margin="546,70,166,0" VerticalAlignment="Top" Click="btnViewCustomer_Click"/>
+        <Label Content="CustomerID" HorizontalAlignment="Left" Height="25" Margin="432,98,0,0" VerticalAlignment="Top" Width="81" IsEnabled="False"/>
+        <TextBox x:Name="txtCustomer" HorizontalAlignment="Left" Height="19" Margin="518,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" RenderTransformOrigin="0.422,0.613" IsEnabled="False"/>
+        <Button x:Name="btnToViewRoom" Content="View Room" HorizontalAlignment="Left" Height="30" Margin="658,70,0,0" VerticalAlignment="Top" Width="76" Click="btnViewBooking_Click"/>
+    </Grid>
+</Window>

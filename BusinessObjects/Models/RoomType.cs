@@ -14,4 +14,9 @@ public partial class RoomType
     public string? TypeNote { get; set; }
 
     public virtual ICollection<RoomInformation> RoomInformations { get; set; } = new List<RoomInformation>();
+
+    public override string ToString()
+    {
+        return $"{RoomTypeName}";
+    }
 }

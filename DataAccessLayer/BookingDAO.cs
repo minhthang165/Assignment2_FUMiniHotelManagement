@@ -35,6 +35,29 @@ namespace DataAccessLayer
             }
         }
 
+        public static List<BookingReservation> GetBookingsList()
+        {
+            try
+            {
+                using var context = new FuminiHotelManagementContext();
+                var bookings = from br in context.BookingReservations
+                               select new BookingReservation
+                               {
+                                   BookingReservationId = br.BookingReservationId,
+                                   BookingDate = br.BookingDate,
+                                   TotalPrice = br.TotalPrice,
+                                   BookingStatus = br.BookingStatus,
+                                   BookingDetails = br.BookingDetails.ToList(),
+                                   Customer = br.Customer
+                               };
+                return bookings.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public static void CreateNewBooking(RoomInformation room, Customer customer, DateOnly StartDate, DateOnly EndDate)
         {
             try
@@ -108,17 +131,30 @@ namespace DataAccessLayer
             }
         }
 
-        public static BookingReservation GetBookingReservationById(int id)
+        public static BookingReservation GetBookingReservationByCustomerId(int CustomerId)
         {
             try
             {
                 using var context = new FuminiHotelManagementContext();
-                return context.BookingReservations.FirstOrDefault(b => b.CustomerId == id);
+                return context.BookingReservations.FirstOrDefault(b => b.CustomerId == CustomerId);
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
+        public static BookingReservation GetBookingReservationByBookingId(int id)
+        {
+            try
+            {
+                using var context = new FuminiHotelManagementContext();
+                return context.BookingReservations.FirstOrDefault(b => b.BookingReservationId == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

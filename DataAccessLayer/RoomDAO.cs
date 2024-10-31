@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,9 @@ namespace DataAccessLayer
             try
             {
                 using var context = new FuminiHotelManagementContext();
-                return RoomList = context.RoomInformations.ToList();
+                return RoomList = context.RoomInformations
+                    .Include(r => r.RoomType)
+                    .ToList();
             }
             catch (Exception ex)
             {
@@ -57,7 +60,27 @@ namespace DataAccessLayer
             try
             {
                 using var context = new FuminiHotelManagementContext();
-                context.RoomInformations.Remove(roomInformation);
+                var room = context.RoomInformations
+                                  .Include(r => r.BookingDetails)
+                                  .FirstOrDefault(r => r.RoomId == roomInformation.RoomId);
+
+                if (room == null)
+                {
+                    throw new Exception("Room not found.");
+                }
+                bool isRoomInTransaction = room.BookingDetails.Any();
+
+                if (isRoomInTransaction)
+                {
+                    room.RoomStatus = 2; 
+                    context.RoomInformations.Update(room);
+                }
+                else
+                {
+                    // If no booking transaction, delete the room
+                    context.RoomInformations.Remove(room);
+                }
+
                 context.SaveChanges();
             }
             catch (Exception ex)

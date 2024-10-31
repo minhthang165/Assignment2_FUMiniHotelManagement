@@ -68,6 +68,7 @@ namespace HotelApp
             }
             finally
             {
+                MessageBox.Show("Create succfully");
                 LoadCustomerList();
             }
         }
@@ -96,6 +97,7 @@ namespace HotelApp
                 MessageBox.Show(ex.Message, "Error when updating customer");
             } finally
             {
+                MessageBox.Show("Update successfully");
                 LoadCustomerList();
             }
         }
@@ -126,13 +128,16 @@ namespace HotelApp
             }
             finally
             {
+                MessageBox.Show("Delete Successfully");
                 LoadCustomerList();
             }
         }
 
         private void btnRoom_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
+            ManageRoom manageRoom = new ManageRoom();
+            manageRoom.Show();
         }
 
         private void dgData_SelectionChanged(object sender, SelectionChangedEventArgs e)

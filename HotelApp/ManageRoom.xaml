@@ -1,0 +1,41 @@
+﻿<Window x:Class="HotelApp.ManageRoom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelApp"
+        mc:Ignorable="d"
+        Title="ManageRoom" Height="450" Width="800">
+    <Grid>
+        <Label Content="Room Number" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="Room Detail" HorizontalAlignment="Left" Height="25" Margin="10,40,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="Max Capacity" HorizontalAlignment="Left" Height="25" Margin="10,70,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="RoomID" HorizontalAlignment="Left" Height="25" Margin="10,100,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="Status" HorizontalAlignment="Left" Height="25" Margin="10,130,0,0" VerticalAlignment="Top" Width="119"/>
+        <TextBox x:Name="txtRoomNum" HorizontalAlignment="Left" Height="19" Margin="142,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+        <TextBox x:Name="txtRoomDetail" HorizontalAlignment="Left" Height="19" Margin="142,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+        <TextBox x:Name="txtCapacity" HorizontalAlignment="Left" Height="19" Margin="142,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+        <TextBox x:Name="txtRoomId" HorizontalAlignment="Left" Height="19" Margin="142,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" IsEnabled="False"/>
+        <TextBox x:Name="txtStatus" HorizontalAlignment="Left" Height="19" Margin="142,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+        <DataGrid x:Name="dgData" HorizontalAlignment="Center" Height="259" Margin="0,175,0,0" VerticalAlignment="Top" Width="800" AutoGenerateColumns="False" SelectionChanged="dgData_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Room ID" Binding="{Binding RoomId}" />
+                <DataGridTextColumn Header="Room Number" Binding="{Binding RoomNumber}" />
+                <DataGridTextColumn Header="Room Detail" Binding="{Binding RoomDetailDescription}" />
+                <DataGridTextColumn Header="Max Capacity" Binding="{Binding RoomMaxCapacity}" />
+                <DataGridTextColumn Header="Room Type" Binding="{Binding RoomType}" />
+                <DataGridTextColumn Header="Room Status" Binding="{Binding RoomStatus}" />
+                <DataGridTextColumn Header="Price/Day" Binding="{Binding RoomPricePerDay}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Height="30" Margin="518,26,0,0" VerticalAlignment="Top" Width="57" Click="btnCreate_Click"/>
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Height="30" Margin="610,26,0,0" VerticalAlignment="Top" Width="56" Click="btnUpdate_Click"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="30" Margin="700,26,0,0" VerticalAlignment="Top" Width="58" Click="btnDelete_Click"/>
+        <Button x:Name="btnToViewCustomer" Content="View Customer" Height="30" Margin="546,70,166,0" VerticalAlignment="Top" Click="btnViewCustomer_Click"/>
+        <Label Content="Price/Day" HorizontalAlignment="Left" Height="25" Margin="445,130,0,0" VerticalAlignment="Top" Width="68"/>
+        <TextBox x:Name="txtPricePerDay" HorizontalAlignment="Left" Height="19" Margin="518,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" RenderTransformOrigin="0.422,0.613"/>
+        <Label Content="TypeID" HorizontalAlignment="Left" Height="25" Margin="445,98,0,0" VerticalAlignment="Top" Width="68"/>
+        <TextBox x:Name="txtTypeId" HorizontalAlignment="Left" Height="19" Margin="518,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" RenderTransformOrigin="0.422,0.613"/>
+        <Button x:Name="btnToViewBooking" Content="View Booking" HorizontalAlignment="Left" Height="30" Margin="658,70,0,0" VerticalAlignment="Top" Width="76" Click="btnViewBooking_Click"/>
+    </Grid>
+</Window>

@@ -11,9 +11,11 @@ namespace Repositories
     public interface IBookingRepository
     {
         List<BookingReservation> GetBookingsListById(int CustomerId);
+        List<BookingReservation> GetBookingList();
         void UpdateBooking(RoomInformation room, Customer customer, DateOnly StartDate, DateOnly EndDate, BookingStatus status);
         void DeleteBooking(BookingReservation bookingReservation);
         void CreateNewBooking(RoomInformation room, Customer customer, DateOnly StartDate, DateOnly EndDate);
-        BookingReservation GetBookingById(int id);
+        BookingReservation GetBookingByCustomerId(int CustomerId);
+        BookingReservation GetBookingByBookingId(int BookingId);
     }
 }

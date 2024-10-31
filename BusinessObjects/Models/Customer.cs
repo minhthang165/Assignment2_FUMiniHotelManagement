@@ -23,11 +23,12 @@ public partial class Customer
 
     public override string? ToString()
     {
-        return $"Customer ID: {CustomerId}\n" +
-       $"Full Name: {CustomerFullName}\n" +
-       $"Telephone: {Telephone}\n" +
-       $"Email: {EmailAddress}\n" +
-       $"Birthday: {CustomerBirthday?.ToString("yyyy-MM-dd") ?? "N/A"}\n" + 
-       $"Status: {(CustomerStatus.HasValue ? CustomerStatus.Value.ToString() : "N/A")}";
+        return
+       //$"Customer ID: {CustomerId}\n" +
+       $"Full Name: {CustomerFullName}\n";
+       //$"Telephone: {Telephone}\n" +
+       //$"Email: {EmailAddress}\n" +
+       //$"Birthday: {CustomerBirthday?.ToString("yyyy-MM-dd") ?? "N/A"}\n" + 
+       //$"Status: {(CustomerStatus.HasValue ? CustomerStatus.Value.ToString() : "N/A")}";
     }
 }

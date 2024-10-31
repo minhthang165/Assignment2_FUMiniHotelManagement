@@ -16,8 +16,11 @@ namespace Repositories
 
         public void DeleteBooking(BookingReservation bookingReservation) => BookingDAO.DeleteBooking(bookingReservation);
 
-        public BookingReservation GetBookingById(int id) => BookingDAO.GetBookingReservationById(id);
+        public BookingReservation GetBookingByBookingId(int BookingId) => BookingDAO.GetBookingReservationByBookingId(BookingId);
 
+        public BookingReservation GetBookingByCustomerId(int CustomerId) => BookingDAO.GetBookingReservationByCustomerId(CustomerId);
+
+        public List<BookingReservation> GetBookingList() => BookingDAO.GetBookingsList();
         public List<BookingReservation> GetBookingsListById(int CustomerId) => BookingDAO.GetBookingsListById(CustomerId);
 
         public void UpdateBooking(RoomInformation room, Customer customer, DateOnly StartDate, DateOnly EndDate, BookingStatus status)
