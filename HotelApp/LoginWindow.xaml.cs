@@ -21,9 +21,19 @@ namespace HotelApp
             Customer customer = customerRepository.GetCustomerToLogin(txtUser.Text, txtPass.Password);
             if (customer != null)
             {
-                this.Hide();
-                CustomerWindow customerWindow = new CustomerWindow(customer.CustomerId);
-                customerWindow.Show();
+                switch (customer.CustomerFullName)
+                {
+                    case "Admin":
+                        this.Hide();
+                        AdminWindow adminWindow = new AdminWindow();
+                        adminWindow.Show();
+                        break;
+                    default:
+                        this.Hide();
+                        CustomerWindow customerWindow = new CustomerWindow(customer.CustomerId);
+                        customerWindow.Show();
+                        break;
+                } 
             }
             else
             {

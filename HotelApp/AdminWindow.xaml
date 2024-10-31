@@ -1,0 +1,39 @@
+﻿<Window x:Class="HotelApp.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelApp"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Customer Full Name" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="Telephone" HorizontalAlignment="Left" Height="25" Margin="10,40,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="Email" HorizontalAlignment="Left" Height="25" Margin="10,70,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="Birthday" HorizontalAlignment="Left" Height="25" Margin="10,100,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label Content="Status" HorizontalAlignment="Left" Height="25" Margin="10,130,0,0" VerticalAlignment="Top" Width="119"/>
+        <TextBox x:Name="txtFullName" HorizontalAlignment="Left" Height="19" Margin="142,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+        <TextBox x:Name="txtTelephone" HorizontalAlignment="Left" Height="19" Margin="142,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="19" Margin="142,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+        <TextBox x:Name="txtBirthday" HorizontalAlignment="Left" Height="19" Margin="142,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+        <TextBox x:Name="txtStatus" HorizontalAlignment="Left" Height="19" Margin="142,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
+        <DataGrid x:Name="dgData" HorizontalAlignment="Center" Height="259" Margin="0,175,0,0" VerticalAlignment="Top" Width="800" SelectionChanged="dgData_SelectionChanged" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Customer ID" Binding="{Binding CustomerId}" />
+                <DataGridTextColumn Header="Full Name" Binding="{Binding CustomerFullName}" />
+                <DataGridTextColumn Header="Telephone" Binding="{Binding Telephone}" />
+                <DataGridTextColumn Header="Email Address" Binding="{Binding EmailAddress}" />
+                <DataGridTextColumn Header="Birthday" Binding="{Binding CustomerBirthday}" />
+                <DataGridTextColumn Header="Status" Binding="{Binding CustomerStatus}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Height="30" Margin="445,29,0,0" VerticalAlignment="Top" Width="57" Click="btnCreate_Click"/>
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Height="30" Margin="530,29,0,0" VerticalAlignment="Top" Width="56" Click="btnUpdate_Click"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="30" Margin="633,29,0,0" VerticalAlignment="Top" Width="57" Click="btnDelete_Click"/>
+        <Button x:Name="btnToRoom" Content="Room Info" HorizontalAlignment="Left" Height="30" Margin="721,29,0,0" VerticalAlignment="Top" Width="69" Click="btnRoom_Click"/>
+        <Label Content="Password" HorizontalAlignment="Left" Height="25" Margin="445,130,0,0" VerticalAlignment="Top" Width="68"/>
+        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="19" Margin="518,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" RenderTransformOrigin="0.422,0.613"/>
+        <Label Content="ID" HorizontalAlignment="Left" Height="25" Margin="445,98,0,0" VerticalAlignment="Top" Width="68"/>
+        <TextBox x:Name="txtID" HorizontalAlignment="Left" Height="19" Margin="518,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" RenderTransformOrigin="0.422,0.613"/>
+    </Grid>
+</Window>

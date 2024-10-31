@@ -7,7 +7,29 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="dgData" AutoGenerateColumns="True" Margin="0,95,0,0" Height="339" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dgData" AutoGenerateColumns="False" Margin="0,95,0,0" Height="339" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Booking Reservation ID" Binding="{Binding BookingReservationId}" />
+                <DataGridTextColumn Header="Booking Date" Binding="{Binding BookingDate}" />
+                <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}" />
+                <DataGridTextColumn Header="Booking Status" Binding="{Binding BookingStatus}" />
+                <DataGridTemplateColumn Header="Start Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding BookingDetails[0].StartDate}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="End Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding BookingDetails[0].EndDate}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Customer" Binding="{Binding Customer}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <TextBox HorizontalAlignment="Center" Height="37" Margin="0,30,0,0" TextWrapping="Wrap" Text="Booking Reservation List" VerticalAlignment="Top" Width="308" FontSize="20" TextAlignment="Center"/>
         <Button x:Name="btnProfile" Content="Profile" HorizontalAlignment="Left" Margin="584,30,0,0" VerticalAlignment="Top" Width="78" Height="37" Click="btnProfile_Click"/>
         <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="709,30,0,0" VerticalAlignment="Top" Height="39" Width="55" Click="btnClose_Click"/>

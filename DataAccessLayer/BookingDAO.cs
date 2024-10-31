@@ -16,14 +16,16 @@ namespace DataAccessLayer
             try
             {
                 using var context = new FuminiHotelManagementContext();
-                 var bookings = from br in context.BookingReservations
-                                where br.CustomerId == CustomerId
+                var bookings = from br in context.BookingReservations
+                               where br.CustomerId == CustomerId
                                select new BookingReservation
-                               { 
-                                BookingReservationId = br.BookingReservationId,
-                                BookingDate = br.BookingDate,
-                                TotalPrice = br.TotalPrice,
-                                BookingStatus = br.BookingStatus
+                               {
+                                   BookingReservationId = br.BookingReservationId,
+                                   BookingDate = br.BookingDate,
+                                   TotalPrice = br.TotalPrice,
+                                   BookingStatus = br.BookingStatus,
+                                   BookingDetails = br.BookingDetails.ToList(),
+                                   Customer = br.Customer
                                };
                 return bookings.ToList();
             }

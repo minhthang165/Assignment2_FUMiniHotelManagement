@@ -1,6 +1,7 @@
 ﻿using BusinessObjects.Models;
 using DataAccessLayer;
 using Repositories;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,6 +41,14 @@ namespace HotelApp
                 }
                 else
                 {
+                    foreach (var Booking in BookingList)
+                    {
+                        Debug.WriteLine(Booking.BookingReservationId);
+                        foreach(var BookingDetails in Booking.BookingDetails)
+                        {
+                            Debug.WriteLine(BookingDetails.ActualPrice);
+                        }
+                    }
                     dgData.ItemsSource = BookingList;
                 }
             }
